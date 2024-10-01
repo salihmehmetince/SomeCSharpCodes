@@ -30,8 +30,8 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.LblCategoryNameLabel = new System.Windows.Forms.Label();
             this.TxtCategoryName = new System.Windows.Forms.TextBox();
+            this.LblCategoryNameLabel = new System.Windows.Forms.Label();
             this.BtnList = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
@@ -59,9 +59,17 @@
             this.groupBox1.Controls.Add(this.LblCategoryNameLabel);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(491, 62);
+            this.groupBox1.Size = new System.Drawing.Size(530, 339);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // TxtCategoryName
+            // 
+            this.TxtCategoryName.Location = new System.Drawing.Point(180, 26);
+            this.TxtCategoryName.Name = "TxtCategoryName";
+            this.TxtCategoryName.Size = new System.Drawing.Size(305, 30);
+            this.TxtCategoryName.TabIndex = 1;
             // 
             // LblCategoryNameLabel
             // 
@@ -71,13 +79,6 @@
             this.LblCategoryNameLabel.Size = new System.Drawing.Size(155, 25);
             this.LblCategoryNameLabel.TabIndex = 0;
             this.LblCategoryNameLabel.Text = "Category Name:";
-            // 
-            // TxtCategoryName
-            // 
-            this.TxtCategoryName.Location = new System.Drawing.Point(180, 26);
-            this.TxtCategoryName.Name = "TxtCategoryName";
-            this.TxtCategoryName.Size = new System.Drawing.Size(305, 30);
-            this.TxtCategoryName.TabIndex = 1;
             // 
             // BtnList
             // 
@@ -97,6 +98,7 @@
             this.BtnSave.TabIndex = 3;
             this.BtnSave.Text = "Save";
             this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnDelete
             // 
@@ -106,6 +108,7 @@
             this.BtnDelete.TabIndex = 4;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnUpdate
             // 
@@ -115,6 +118,7 @@
             this.BtnUpdate.TabIndex = 5;
             this.BtnUpdate.Text = "Update";
             this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // BtnSearch
             // 
@@ -124,6 +128,7 @@
             this.BtnSearch.TabIndex = 6;
             this.BtnSearch.Text = "Search";
             this.BtnSearch.UseVisualStyleBackColor = true;
+            this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // Form1
             // 
@@ -142,6 +147,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Book Form";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
