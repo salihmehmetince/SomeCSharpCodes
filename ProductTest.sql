@@ -30,3 +30,14 @@ create table TblProduct(
 insert into TblProduct values('buz dolabý',30,1100,1200,1);
 insert into TblProduct values('Laptop',10,13200,15000,2);
 insert into TblProduct values('Blender',14,200,500,3);*/
+
+/*create table AdminTable(
+	Id int not null identity(1,1),
+	aName nvarchar(40) not null,
+	aPassword nvarchar(40) not null
+	constraint PK_AID primary key(Id),
+	constraint CK_AName check(len(aName)>2),
+	constraint CK_APassword check(len(aPassword)>2)
+)*/
+
+--select cName, COUNT(*) from TblProduct inner join TblCategory on TblProduct.category=TblCategory.Idgroup by cName

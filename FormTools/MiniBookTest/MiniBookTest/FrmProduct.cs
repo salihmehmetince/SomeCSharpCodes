@@ -21,11 +21,12 @@ namespace MiniBookTest
 
         private void list()
         {
-            SqlCommand commandList = new SqlCommand("select * from TblProduct", connection);
+            SqlCommand commandList = new SqlCommand("SELECT TblProduct.Id, TblProduct.pName, TblProduct.stock, TblProduct.buyingPrice, TblProduct.sellingPrice,TblProduct.category, TblCategory.cName  FROM TblProduct INNER JOIN TblCategory ON TblProduct.category = TblCategory.Id", connection);
             SqlDataAdapter listCommandAdapter = new SqlDataAdapter(commandList);
             DataTable dt = new DataTable();
             listCommandAdapter.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns[5].Visible = false;
         }
         private void fillCombobox()
         {
@@ -115,6 +116,99 @@ namespace MiniBookTest
             {
                 e.Handled = true; // Eğer sayı değilse işlemi engelle
             }
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            string sDeleteValue = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
+            if(sDeleteValue=="")
+            {
+                MessageBox.Show("You have to choose a category from datagrid to delete ", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int deleteValue = int.Parse(sDeleteValue);
+            
+            connection.Open();
+            SqlCommand commandDelete = new SqlCommand("delete from TblProduct where Id=@p1", connection);
+            commandDelete.Parameters.AddWithValue("@p1", deleteValue);
+            commandDelete.ExecuteNonQuery();
+            connection.Close();
+            MessageBox.Show("Successfully deleted ", "information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            list();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            TxtProductName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            NUDStock.Value = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
+            TxtBuyingPrice.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            TxtSellingPrice.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            CmbCategory.SelectedValue = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            connection.Open();
+            SqlCommand commandUpdate = new SqlCommand("update TblProduct set pName=@p1,stock=@p2,buyingPrice=@p3,sellingPrice=@p4,category=@p5 where Id=@p6",connection);
+
+            string pName = TxtProductName.Text;
+            int stock = (int)NUDStock.Value;
+            string buyingPrice = TxtBuyingPrice.Text;
+            string sellingPrice = TxtSellingPrice.Text;
+            int category = int.Parse(CmbCategory.SelectedValue.ToString());
+
+            if (pName == "")
+            {
+                MessageBox.Show("Not valid product name", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (buyingPrice == "")
+            {
+                MessageBox.Show("Not valid product buying price", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (sellingPrice == "")
+            {
+                MessageBox.Show("Not valid product selling price", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            decimal iBuyingPrice = Decimal.Parse(buyingPrice);
+            decimal iSellingPrice = Decimal.Parse(sellingPrice);
+
+            if (iBuyingPrice <= 0)
+            {
+                MessageBox.Show("Not valid product buying price", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (iSellingPrice <= 0)
+            {
+                MessageBox.Show("Not valid product selling price", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            commandUpdate.Parameters.AddWithValue("@p1",pName);
+            commandUpdate.Parameters.AddWithValue("@p2",stock);
+            commandUpdate.Parameters.AddWithValue("@p3",iBuyingPrice);
+            commandUpdate.Parameters.AddWithValue("@p4",iSellingPrice);
+            commandUpdate.Parameters.AddWithValue("@p5",category);
+
+            string sUpdateValue = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
+            if (sUpdateValue == "")
+            {
+                MessageBox.Show("You have to choose a category from datagrid to delete ", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int updateValue = int.Parse(sUpdateValue);
+            commandUpdate.Parameters.AddWithValue("@p6", updateValue);
+            commandUpdate.ExecuteNonQuery();
+            connection.Close();
+            MessageBox.Show("Successfully updated", "information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            list();
         }
     }
 }

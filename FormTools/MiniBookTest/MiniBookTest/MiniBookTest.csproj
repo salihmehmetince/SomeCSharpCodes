@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,19 +53,55 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAdmin.Designer.cs">
+      <DependentUpon>FrmAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCharts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCharts.Designer.cs">
+      <DependentUpon>FrmCharts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDirectTo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDirectTo.Designer.cs">
+      <DependentUpon>FrmDirectTo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProduct.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmProduct.Designer.cs">
       <DependentUpon>FrmProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStatistics.Designer.cs">
+      <DependentUpon>FrmStatistics.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmAdmin.resx">
+      <DependentUpon>FrmAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCharts.resx">
+      <DependentUpon>FrmCharts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDirectTo.resx">
+      <DependentUpon>FrmDirectTo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmProduct.resx">
       <DependentUpon>FrmProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStatistics.resx">
+      <DependentUpon>FrmStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

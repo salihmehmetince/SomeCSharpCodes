@@ -16,7 +16,7 @@ namespace MiniBookTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmProduct());
+            Application.Run(new FrmAdmin());
         }
     }
 }

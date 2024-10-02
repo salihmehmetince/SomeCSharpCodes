@@ -35,16 +35,16 @@
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnList = new System.Windows.Forms.Button();
             this.GBTransitions = new System.Windows.Forms.GroupBox();
-            this.TxtProductName = new System.Windows.Forms.TextBox();
-            this.LblProductName = new System.Windows.Forms.Label();
-            this.LblStock = new System.Windows.Forms.Label();
-            this.TxtBuyingPrice = new System.Windows.Forms.TextBox();
-            this.LblBuyingPrice = new System.Windows.Forms.Label();
+            this.NUDStock = new System.Windows.Forms.NumericUpDown();
+            this.CmbCategory = new System.Windows.Forms.ComboBox();
+            this.LblCategory = new System.Windows.Forms.Label();
             this.TxtSellingPrice = new System.Windows.Forms.TextBox();
             this.LblSellingPrice = new System.Windows.Forms.Label();
-            this.LblCategory = new System.Windows.Forms.Label();
-            this.CmbCategory = new System.Windows.Forms.ComboBox();
-            this.NUDStock = new System.Windows.Forms.NumericUpDown();
+            this.TxtBuyingPrice = new System.Windows.Forms.TextBox();
+            this.LblBuyingPrice = new System.Windows.Forms.Label();
+            this.LblStock = new System.Windows.Forms.Label();
+            this.TxtProductName = new System.Windows.Forms.TextBox();
+            this.LblProductName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.GBTransitions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDStock)).BeginInit();
@@ -61,6 +61,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1095, 400);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // BtnSearch
             // 
@@ -79,6 +80,7 @@
             this.BtnUpdate.TabIndex = 10;
             this.BtnUpdate.Text = "Update";
             this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // BtnDelete
             // 
@@ -88,6 +90,7 @@
             this.BtnDelete.TabIndex = 9;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnSave
             // 
@@ -134,47 +137,30 @@
             this.GBTransitions.TabStop = false;
             this.GBTransitions.Text = "Transitions";
             // 
-            // TxtProductName
+            // NUDStock
             // 
-            this.TxtProductName.Location = new System.Drawing.Point(180, 30);
-            this.TxtProductName.Name = "TxtProductName";
-            this.TxtProductName.Size = new System.Drawing.Size(163, 30);
-            this.TxtProductName.TabIndex = 13;
+            this.NUDStock.Location = new System.Drawing.Point(180, 88);
+            this.NUDStock.Name = "NUDStock";
+            this.NUDStock.Size = new System.Drawing.Size(163, 30);
+            this.NUDStock.TabIndex = 23;
             // 
-            // LblProductName
+            // CmbCategory
             // 
-            this.LblProductName.AutoSize = true;
-            this.LblProductName.Location = new System.Drawing.Point(6, 35);
-            this.LblProductName.Name = "LblProductName";
-            this.LblProductName.Size = new System.Drawing.Size(142, 25);
-            this.LblProductName.TabIndex = 12;
-            this.LblProductName.Text = "Product Name:";
+            this.CmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbCategory.FormattingEnabled = true;
+            this.CmbCategory.Location = new System.Drawing.Point(180, 255);
+            this.CmbCategory.Name = "CmbCategory";
+            this.CmbCategory.Size = new System.Drawing.Size(163, 33);
+            this.CmbCategory.TabIndex = 21;
             // 
-            // LblStock
+            // LblCategory
             // 
-            this.LblStock.AutoSize = true;
-            this.LblStock.Location = new System.Drawing.Point(6, 90);
-            this.LblStock.Name = "LblStock";
-            this.LblStock.Size = new System.Drawing.Size(68, 25);
-            this.LblStock.TabIndex = 14;
-            this.LblStock.Text = "Stock:";
-            // 
-            // TxtBuyingPrice
-            // 
-            this.TxtBuyingPrice.Location = new System.Drawing.Point(180, 140);
-            this.TxtBuyingPrice.Name = "TxtBuyingPrice";
-            this.TxtBuyingPrice.Size = new System.Drawing.Size(163, 30);
-            this.TxtBuyingPrice.TabIndex = 17;
-            this.TxtBuyingPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBuyingPrice_KeyPress);
-            // 
-            // LblBuyingPrice
-            // 
-            this.LblBuyingPrice.AutoSize = true;
-            this.LblBuyingPrice.Location = new System.Drawing.Point(6, 145);
-            this.LblBuyingPrice.Name = "LblBuyingPrice";
-            this.LblBuyingPrice.Size = new System.Drawing.Size(127, 25);
-            this.LblBuyingPrice.TabIndex = 16;
-            this.LblBuyingPrice.Text = "Buying Price:";
+            this.LblCategory.AutoSize = true;
+            this.LblCategory.Location = new System.Drawing.Point(6, 255);
+            this.LblCategory.Name = "LblCategory";
+            this.LblCategory.Size = new System.Drawing.Size(155, 25);
+            this.LblCategory.TabIndex = 20;
+            this.LblCategory.Text = "Category Name:";
             // 
             // TxtSellingPrice
             // 
@@ -193,30 +179,47 @@
             this.LblSellingPrice.TabIndex = 18;
             this.LblSellingPrice.Text = "Selling Price:";
             // 
-            // LblCategory
+            // TxtBuyingPrice
             // 
-            this.LblCategory.AutoSize = true;
-            this.LblCategory.Location = new System.Drawing.Point(6, 255);
-            this.LblCategory.Name = "LblCategory";
-            this.LblCategory.Size = new System.Drawing.Size(155, 25);
-            this.LblCategory.TabIndex = 20;
-            this.LblCategory.Text = "Category Name:";
+            this.TxtBuyingPrice.Location = new System.Drawing.Point(180, 140);
+            this.TxtBuyingPrice.Name = "TxtBuyingPrice";
+            this.TxtBuyingPrice.Size = new System.Drawing.Size(163, 30);
+            this.TxtBuyingPrice.TabIndex = 17;
+            this.TxtBuyingPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBuyingPrice_KeyPress);
             // 
-            // CmbCategory
+            // LblBuyingPrice
             // 
-            this.CmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbCategory.FormattingEnabled = true;
-            this.CmbCategory.Location = new System.Drawing.Point(180, 255);
-            this.CmbCategory.Name = "CmbCategory";
-            this.CmbCategory.Size = new System.Drawing.Size(163, 33);
-            this.CmbCategory.TabIndex = 21;
+            this.LblBuyingPrice.AutoSize = true;
+            this.LblBuyingPrice.Location = new System.Drawing.Point(6, 145);
+            this.LblBuyingPrice.Name = "LblBuyingPrice";
+            this.LblBuyingPrice.Size = new System.Drawing.Size(127, 25);
+            this.LblBuyingPrice.TabIndex = 16;
+            this.LblBuyingPrice.Text = "Buying Price:";
             // 
-            // NUDStock
+            // LblStock
             // 
-            this.NUDStock.Location = new System.Drawing.Point(180, 88);
-            this.NUDStock.Name = "NUDStock";
-            this.NUDStock.Size = new System.Drawing.Size(163, 30);
-            this.NUDStock.TabIndex = 23;
+            this.LblStock.AutoSize = true;
+            this.LblStock.Location = new System.Drawing.Point(6, 90);
+            this.LblStock.Name = "LblStock";
+            this.LblStock.Size = new System.Drawing.Size(68, 25);
+            this.LblStock.TabIndex = 14;
+            this.LblStock.Text = "Stock:";
+            // 
+            // TxtProductName
+            // 
+            this.TxtProductName.Location = new System.Drawing.Point(180, 30);
+            this.TxtProductName.Name = "TxtProductName";
+            this.TxtProductName.Size = new System.Drawing.Size(163, 30);
+            this.TxtProductName.TabIndex = 13;
+            // 
+            // LblProductName
+            // 
+            this.LblProductName.AutoSize = true;
+            this.LblProductName.Location = new System.Drawing.Point(6, 35);
+            this.LblProductName.Name = "LblProductName";
+            this.LblProductName.Size = new System.Drawing.Size(142, 25);
+            this.LblProductName.TabIndex = 12;
+            this.LblProductName.Text = "Product Name:";
             // 
             // FrmProduct
             // 
