@@ -75,3 +75,7 @@ insert into TblCustomer values('ad2','soyad2','city2',25000);
 insert into TblCustomer values('ad3','soyad3','city3',31000);
 insert into TblCustomer values('ad4','soyad4','city3',47000);
 insert into TblCustomer values('ad5','soyad5','city1',10000);*/
+insert into TblSales values(2,3,2,1100.12,1100.12*2,'02.02.2018');
+insert into TblSales values(4,6,1,200,200,'05.04.2019');
+insert into TblSales values(4,3,2,200,400,'11.09.2020');
+insert into TblSales values(2,2,2,1100.12,1100.12*2,'12.12.2021');

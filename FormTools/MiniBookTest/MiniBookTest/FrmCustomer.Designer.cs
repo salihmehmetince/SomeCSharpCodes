@@ -30,27 +30,27 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TxtId = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TxtName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TxtSurname = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.TxtCity = new System.Windows.Forms.TextBox();
+            this.BtnDelete = new System.Windows.Forms.Button();
+            this.BtnUpdate = new System.Windows.Forms.Button();
+            this.BtnSave = new System.Windows.Forms.Button();
+            this.BtnList = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.TxtBalance = new System.Windows.Forms.TextBox();
-            this.BtnList = new System.Windows.Forms.Button();
-            this.BtnSave = new System.Windows.Forms.Button();
-            this.BtnUpdate = new System.Windows.Forms.Button();
-            this.BtnDelete = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TxtCity = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtSurname = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TxtId = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.BtnSearch = new System.Windows.Forms.Button();
+            this.RDBSearchCity = new System.Windows.Forms.RadioButton();
+            this.RDBSearchSurname = new System.Windows.Forms.RadioButton();
+            this.RDBSearchName = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -67,6 +67,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(732, 739);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // groupBox1
             // 
@@ -91,69 +92,49 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // TxtId
+            // BtnDelete
             // 
-            this.TxtId.Location = new System.Drawing.Point(195, 26);
-            this.TxtId.Name = "TxtId";
-            this.TxtId.Size = new System.Drawing.Size(125, 30);
-            this.TxtId.TabIndex = 0;
+            this.BtnDelete.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.BtnDelete.Location = new System.Drawing.Point(104, 360);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(175, 43);
+            this.BtnDelete.TabIndex = 13;
+            this.BtnDelete.Text = "Delete";
+            this.BtnDelete.UseVisualStyleBackColor = false;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            // label1
+            // BtnUpdate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(65, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Customer Id:";
+            this.BtnUpdate.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.BtnUpdate.Location = new System.Drawing.Point(104, 311);
+            this.BtnUpdate.Name = "BtnUpdate";
+            this.BtnUpdate.Size = new System.Drawing.Size(175, 43);
+            this.BtnUpdate.TabIndex = 12;
+            this.BtnUpdate.Text = "Update";
+            this.BtnUpdate.UseVisualStyleBackColor = false;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
-            // label2
+            // BtnSave
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 25);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Customer Name:";
+            this.BtnSave.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.BtnSave.Location = new System.Drawing.Point(104, 262);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(175, 43);
+            this.BtnSave.TabIndex = 11;
+            this.BtnSave.Text = "Save";
+            this.BtnSave.UseVisualStyleBackColor = false;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // TxtName
+            // BtnList
             // 
-            this.TxtName.Location = new System.Drawing.Point(195, 65);
-            this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(125, 30);
-            this.TxtName.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(188, 25);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Customer Surname:";
-            // 
-            // TxtSurname
-            // 
-            this.TxtSurname.Location = new System.Drawing.Point(195, 102);
-            this.TxtSurname.Name = "TxtSurname";
-            this.TxtSurname.Size = new System.Drawing.Size(125, 30);
-            this.TxtSurname.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(47, 140);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(142, 25);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Customer City:";
-            // 
-            // TxtCity
-            // 
-            this.TxtCity.Location = new System.Drawing.Point(195, 140);
-            this.TxtCity.Name = "TxtCity";
-            this.TxtCity.Size = new System.Drawing.Size(125, 30);
-            this.TxtCity.TabIndex = 6;
+            this.BtnList.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.BtnList.Location = new System.Drawing.Point(104, 213);
+            this.BtnList.Name = "BtnList";
+            this.BtnList.Size = new System.Drawing.Size(175, 43);
+            this.BtnList.TabIndex = 10;
+            this.BtnList.Text = "List";
+            this.BtnList.UseVisualStyleBackColor = false;
+            this.BtnList.Click += new System.EventHandler(this.BtnList_Click);
             // 
             // label5
             // 
@@ -172,112 +153,84 @@
             this.TxtBalance.TabIndex = 8;
             this.TxtBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBalance_KeyPress);
             // 
-            // BtnList
+            // label4
             // 
-            this.BtnList.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.BtnList.Location = new System.Drawing.Point(104, 213);
-            this.BtnList.Name = "BtnList";
-            this.BtnList.Size = new System.Drawing.Size(175, 43);
-            this.BtnList.TabIndex = 10;
-            this.BtnList.Text = "List";
-            this.BtnList.UseVisualStyleBackColor = false;
-            this.BtnList.Click += new System.EventHandler(this.BtnList_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(47, 140);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(142, 25);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Customer City:";
             // 
-            // BtnSave
+            // TxtCity
             // 
-            this.BtnSave.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.BtnSave.Location = new System.Drawing.Point(104, 262);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(175, 43);
-            this.BtnSave.TabIndex = 11;
-            this.BtnSave.Text = "Save";
-            this.BtnSave.UseVisualStyleBackColor = false;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.TxtCity.Location = new System.Drawing.Point(195, 140);
+            this.TxtCity.Name = "TxtCity";
+            this.TxtCity.Size = new System.Drawing.Size(125, 30);
+            this.TxtCity.TabIndex = 6;
             // 
-            // BtnUpdate
+            // label3
             // 
-            this.BtnUpdate.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.BtnUpdate.Location = new System.Drawing.Point(104, 311);
-            this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(175, 43);
-            this.BtnUpdate.TabIndex = 12;
-            this.BtnUpdate.Text = "Update";
-            this.BtnUpdate.UseVisualStyleBackColor = false;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1, 102);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(188, 25);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Customer Surname:";
             // 
-            // BtnDelete
+            // TxtSurname
             // 
-            this.BtnDelete.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.BtnDelete.Location = new System.Drawing.Point(104, 360);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(175, 43);
-            this.BtnDelete.TabIndex = 13;
-            this.BtnDelete.Text = "Delete";
-            this.BtnDelete.UseVisualStyleBackColor = false;
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            this.TxtSurname.Location = new System.Drawing.Point(195, 102);
+            this.TxtSurname.Name = "TxtSurname";
+            this.TxtSurname.Size = new System.Drawing.Size(125, 30);
+            this.TxtSurname.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(160, 25);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Customer Name:";
+            // 
+            // TxtName
+            // 
+            this.TxtName.Location = new System.Drawing.Point(195, 65);
+            this.TxtName.Name = "TxtName";
+            this.TxtName.Size = new System.Drawing.Size(125, 30);
+            this.TxtName.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(65, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Customer Id:";
+            // 
+            // TxtId
+            // 
+            this.TxtId.Location = new System.Drawing.Point(195, 26);
+            this.TxtId.Name = "TxtId";
+            this.TxtId.Size = new System.Drawing.Size(125, 30);
+            this.TxtId.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.MediumAquamarine;
             this.groupBox2.Controls.Add(this.BtnSearch);
-            this.groupBox2.Controls.Add(this.radioButton3);
-            this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Controls.Add(this.radioButton1);
+            this.groupBox2.Controls.Add(this.RDBSearchCity);
+            this.groupBox2.Controls.Add(this.RDBSearchSurname);
+            this.groupBox2.Controls.Add(this.RDBSearchName);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.TxtSearch);
             this.groupBox2.Location = new System.Drawing.Point(750, 15);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(331, 303);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 28);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 25);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Search:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(106, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 30);
-            this.textBox1.TabIndex = 14;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(15, 71);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 29);
-            this.radioButton1.TabIndex = 16;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Name";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(106, 71);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(113, 29);
-            this.radioButton2.TabIndex = 17;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Surname";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(225, 71);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(67, 29);
-            this.radioButton3.TabIndex = 18;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "City";
-            this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // BtnSearch
             // 
@@ -288,6 +241,55 @@
             this.BtnSearch.TabIndex = 14;
             this.BtnSearch.Text = "Search";
             this.BtnSearch.UseVisualStyleBackColor = false;
+            this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
+            // 
+            // RDBSearchCity
+            // 
+            this.RDBSearchCity.AutoSize = true;
+            this.RDBSearchCity.Location = new System.Drawing.Point(225, 71);
+            this.RDBSearchCity.Name = "RDBSearchCity";
+            this.RDBSearchCity.Size = new System.Drawing.Size(67, 29);
+            this.RDBSearchCity.TabIndex = 18;
+            this.RDBSearchCity.Text = "City";
+            this.RDBSearchCity.UseVisualStyleBackColor = true;
+            // 
+            // RDBSearchSurname
+            // 
+            this.RDBSearchSurname.AutoSize = true;
+            this.RDBSearchSurname.Location = new System.Drawing.Point(106, 71);
+            this.RDBSearchSurname.Name = "RDBSearchSurname";
+            this.RDBSearchSurname.Size = new System.Drawing.Size(113, 29);
+            this.RDBSearchSurname.TabIndex = 17;
+            this.RDBSearchSurname.Text = "Surname";
+            this.RDBSearchSurname.UseVisualStyleBackColor = true;
+            // 
+            // RDBSearchName
+            // 
+            this.RDBSearchName.AutoSize = true;
+            this.RDBSearchName.Checked = true;
+            this.RDBSearchName.Location = new System.Drawing.Point(15, 71);
+            this.RDBSearchName.Name = "RDBSearchName";
+            this.RDBSearchName.Size = new System.Drawing.Size(85, 29);
+            this.RDBSearchName.TabIndex = 16;
+            this.RDBSearchName.TabStop = true;
+            this.RDBSearchName.Text = "Name";
+            this.RDBSearchName.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(19, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 25);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Search:";
+            // 
+            // TxtSearch
+            // 
+            this.TxtSearch.Location = new System.Drawing.Point(106, 23);
+            this.TxtSearch.Name = "TxtSearch";
+            this.TxtSearch.Size = new System.Drawing.Size(175, 30);
+            this.TxtSearch.TabIndex = 14;
             // 
             // FrmCustomer
             // 
@@ -333,10 +335,10 @@
         private System.Windows.Forms.TextBox TxtId;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button BtnSearch;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton RDBSearchCity;
+        private System.Windows.Forms.RadioButton RDBSearchSurname;
+        private System.Windows.Forms.RadioButton RDBSearchName;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtSearch;
     }
 }
