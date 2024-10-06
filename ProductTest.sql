@@ -75,7 +75,73 @@ insert into TblCustomer values('ad2','soyad2','city2',25000);
 insert into TblCustomer values('ad3','soyad3','city3',31000);
 insert into TblCustomer values('ad4','soyad4','city3',47000);
 insert into TblCustomer values('ad5','soyad5','city1',10000);*/
-insert into TblSales values(2,3,2,1100.12,1100.12*2,'02.02.2018');
+/*insert into TblSales values(2,3,2,1100.12,1100.12*2,'02.02.2018');
 insert into TblSales values(4,6,1,200,200,'05.04.2019');
 insert into TblSales values(4,3,2,200,400,'11.09.2020');
-insert into TblSales values(2,2,2,1100.12,1100.12*2,'12.12.2021');
+insert into TblSales values(2,2,2,1100.12,1100.12*2,'12.12.2021');*/
+
+/*create procedure getSales as
+select TblSales.Id,pName,customerName+' '+customerSurname as 'Customer', piece,price,total,saleDate
+from TblSales inner join TblProduct on TblSales.product=TblProduct.Id 
+inner join TblCustomer on TblSales.customer=TblCustomer.Id;*/
+
+--execute getSales
+
+/*create procedure getProduct(@productId int) as
+select * from TblProduct where Id=@productId*/
+
+--execute getProduct 4;
+--select * from ViewGetSales
+
+/*create table TblStock(
+	piece int not null
+)*/
+
+--insert into TblStock values(0);
+
+--update TblStock set piece=(select COUNT(*) from TblProduct)
+
+/*create trigger increaseStock
+on TblProduct after insert as update TblStock set piece=piece+1;*/
+
+--insert into TblProduct values('Test',5,10,15,1);
+
+/*create trigger decreaseStock
+on TblProduct after delete
+as update TblStock set piece=piece-1;*/
+
+--delete from TblProduct where Id=7;
+
+/*create table TblStocks(
+	piece int not null
+);*/
+
+--insert into TblStocks values(0);
+--update tblStocks set piece=(select sum(stock) from TblProduct);
+
+/*create trigger increaseStocks
+on TblProduct
+after insert
+as
+declare @stocks int
+select @stocks=stock from inserted
+update TblStocks set piece=piece+@stocks;*/
+
+--insert into TblProduct values('Test3',25,210,215,1);
+CREATE PROCEDURE getSalesName
+AS
+BEGIN
+    SELECT 
+        TblSales.Id, 
+        TblProduct.pName AS 'Product', 
+        TblCustomer.customerName,
+		TblCustomer.customerSurname, 
+        TblSales.piece, 
+        TblSales.price, 
+        TblSales.total, 
+        TblSales.saleDate
+    FROM TblSales 
+    INNER JOIN TblProduct ON TblSales.product = TblProduct.Id 
+    INNER JOIN TblCustomer ON TblSales.customer = TblCustomer.Id;
+END;
+
