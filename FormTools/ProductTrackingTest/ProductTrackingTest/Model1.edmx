@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBProductTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="aPassword" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cName" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblCustomer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="customerSurname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="balance" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="buyingPrice" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="sellingPrice" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="category" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblSales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product" Type="int" Nullable="false" />
+          <Property Name="customer" Type="int" Nullable="false" />
+          <Property Name="piece" Type="smallint" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="saleDate" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_customer">
+          <End Role="TblCustomer" Type="Self.TblCustomer" Multiplicity="1" />
+          <End Role="TblSales" Type="Self.TblSales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCustomer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSales">
+              <PropertyRef Name="customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PCategory">
+          <End Role="TblCategory" Type="Self.TblCategory" Multiplicity="1" />
+          <End Role="TblProduct" Type="Self.TblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblProduct">
+              <PropertyRef Name="category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product">
+          <End Role="TblProduct" Type="Self.TblProduct" Multiplicity="1" />
+          <End Role="TblSales" Type="Self.TblSales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSales">
+              <PropertyRef Name="product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBProductTestModelStoreContainer">
+          <EntitySet Name="AdminTable" EntityType="Self.AdminTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblCategory" EntityType="Self.TblCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblCustomer" EntityType="Self.TblCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblProduct" EntityType="Self.TblProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblSales" EntityType="Self.TblSales" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_customer" Association="Self.FK_customer">
+            <End Role="TblCustomer" EntitySet="TblCustomer" />
+            <End Role="TblSales" EntitySet="TblSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PCategory" Association="Self.FK_PCategory">
+            <End Role="TblCategory" EntitySet="TblCategory" />
+            <End Role="TblProduct" EntitySet="TblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product" Association="Self.FK_product">
+            <End Role="TblProduct" EntitySet="TblProduct" />
+            <End Role="TblSales" EntitySet="TblSales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBProductTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="aPassword" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TblProduct" Relationship="Self.FK_PCategory" FromRole="TblCategory" ToRole="TblProduct" />
+        </EntityType>
+        <EntityType Name="TblCustomer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="customerSurname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="balance" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <NavigationProperty Name="TblSales" Relationship="Self.FK_customer" FromRole="TblCustomer" ToRole="TblSales" />
+        </EntityType>
+        <EntityType Name="TblProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="buyingPrice" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="sellingPrice" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="category" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TblCategory" Relationship="Self.FK_PCategory" FromRole="TblProduct" ToRole="TblCategory" />
+          <NavigationProperty Name="TblSales" Relationship="Self.FK_product" FromRole="TblProduct" ToRole="TblSales" />
+        </EntityType>
+        <EntityType Name="TblSales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product" Type="Int32" Nullable="false" />
+          <Property Name="customer" Type="Int32" Nullable="false" />
+          <Property Name="piece" Type="Int16" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="saleDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="TblCustomer" Relationship="Self.FK_customer" FromRole="TblSales" ToRole="TblCustomer" />
+          <NavigationProperty Name="TblProduct" Relationship="Self.FK_product" FromRole="TblSales" ToRole="TblProduct" />
+        </EntityType>
+        <Association Name="FK_PCategory">
+          <End Role="TblCategory" Type="Self.TblCategory" Multiplicity="1" />
+          <End Role="TblProduct" Type="Self.TblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblProduct">
+              <PropertyRef Name="category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customer">
+          <End Role="TblCustomer" Type="Self.TblCustomer" Multiplicity="1" />
+          <End Role="TblSales" Type="Self.TblSales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCustomer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSales">
+              <PropertyRef Name="customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product">
+          <End Role="TblProduct" Type="Self.TblProduct" Multiplicity="1" />
+          <End Role="TblSales" Type="Self.TblSales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblSales">
+              <PropertyRef Name="product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBProductTestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminTable" EntityType="Self.AdminTable" />
+          <EntitySet Name="TblCategory" EntityType="Self.TblCategory" />
+          <EntitySet Name="TblCustomer" EntityType="Self.TblCustomer" />
+          <EntitySet Name="TblProduct" EntityType="Self.TblProduct" />
+          <EntitySet Name="TblSales" EntityType="Self.TblSales" />
+          <AssociationSet Name="FK_PCategory" Association="Self.FK_PCategory">
+            <End Role="TblCategory" EntitySet="TblCategory" />
+            <End Role="TblProduct" EntitySet="TblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customer" Association="Self.FK_customer">
+            <End Role="TblCustomer" EntitySet="TblCustomer" />
+            <End Role="TblSales" EntitySet="TblSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product" Association="Self.FK_product">
+            <End Role="TblProduct" EntitySet="TblProduct" />
+            <End Role="TblSales" EntitySet="TblSales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBProductTestModelStoreContainer" CdmEntityContainer="DBProductTestEntities">
+          <EntitySetMapping Name="AdminTable">
+            <EntityTypeMapping TypeName="DBProductTestModel.AdminTable">
+              <MappingFragment StoreEntitySet="AdminTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="aName" ColumnName="aName" />
+                <ScalarProperty Name="aPassword" ColumnName="aPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblCategory">
+            <EntityTypeMapping TypeName="DBProductTestModel.TblCategory">
+              <MappingFragment StoreEntitySet="TblCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblCustomer">
+            <EntityTypeMapping TypeName="DBProductTestModel.TblCustomer">
+              <MappingFragment StoreEntitySet="TblCustomer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="customerSurname" ColumnName="customerSurname" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblProduct">
+            <EntityTypeMapping TypeName="DBProductTestModel.TblProduct">
+              <MappingFragment StoreEntitySet="TblProduct">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="pName" ColumnName="pName" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="buyingPrice" ColumnName="buyingPrice" />
+                <ScalarProperty Name="sellingPrice" ColumnName="sellingPrice" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblSales">
+            <EntityTypeMapping TypeName="DBProductTestModel.TblSales">
+              <MappingFragment StoreEntitySet="TblSales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="product" ColumnName="product" />
+                <ScalarProperty Name="customer" ColumnName="customer" />
+                <ScalarProperty Name="piece" ColumnName="piece" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="saleDate" ColumnName="saleDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
