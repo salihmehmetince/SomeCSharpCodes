@@ -103,6 +103,7 @@
             this.BtnStudentList.TabIndex = 35;
             this.BtnStudentList.Text = "List";
             this.BtnStudentList.UseVisualStyleBackColor = false;
+            this.BtnStudentList.Click += new System.EventHandler(this.BtnStudentList_Click);
             // 
             // BtnStudentUpdate
             // 
@@ -133,6 +134,7 @@
             this.BtnStudentDelete.TabIndex = 32;
             this.BtnStudentDelete.Text = "Delete";
             this.BtnStudentDelete.UseVisualStyleBackColor = false;
+            this.BtnStudentDelete.Click += new System.EventHandler(this.BtnStudentDelete_Click);
             // 
             // BtnUpdate
             // 
@@ -209,6 +211,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -289,6 +292,7 @@
             this.Name = "FrmStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Student Transactions";
+            this.Load += new System.EventHandler(this.FrmStudent_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -35,5 +35,22 @@ namespace BusinessLogicLayer
             int result=DALStudent.insertStudent(student);
             return result;
         }
+
+        public static List<ELStudent> getStudentList()
+        {
+            return DALStudent.getStudentList();
+        }
+
+        public static int deleteStudent(int Id)
+        {
+            if(Id>=1)
+            {
+                return DALStudent.deleteStudent(Id);
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
 }

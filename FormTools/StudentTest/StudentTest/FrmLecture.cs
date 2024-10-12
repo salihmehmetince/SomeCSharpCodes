@@ -1,4 +1,5 @@
-﻿using EntityLayer;
+﻿using BusinessLogicLayer;
+using EntityLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,9 +42,60 @@ namespace StudentTest
             MessageBox.Show("Lecture successfully inserted","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
         }
+
+        private void list()
+        {
+            List<ELLecture> lectureList=BLLecture.getLectureList();
+            dataGridView1.DataSource = lectureList;
+        }
+
+        private void delete()
+        {
+            string Id = TxtLectureId.Text;
+            if (Id == "")
+            {
+                MessageBox.Show("Id cannot be empty", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            byte bId = Byte.Parse(Id);
+            int result = BLLecture.deleteLecture(bId);
+            if (result != -1)
+            {
+                MessageBox.Show("Successfully deleted", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Id cannot be negative", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            list();
+        }
+
+        private void colorDatagridview()
+        {
+            dataGridView1.DefaultCellStyle.BackColor = Color.Green;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkRed;
+        }
         private void BtnInsert_Click(object sender, EventArgs e)
         {
             insertLecture();
+        }
+
+        private void FrmLecture_Load(object sender, EventArgs e)
+        {
+            list();
+            colorDatagridview();
+        }
+
+        private void BtnList_Click(object sender, EventArgs e)
+        {
+            list();
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            delete();
         }
     }
 }

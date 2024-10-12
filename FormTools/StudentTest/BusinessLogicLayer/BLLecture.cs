@@ -23,5 +23,22 @@ namespace BusinessLogicLayer
             }
 
         }
+
+        public static List<ELLecture> getLectureList()
+        {
+            return DALLecture.getlecture();
+        }
+
+        public static int deleteLecture(byte Id)
+        {
+            if(Id>=1)
+            {
+                return DALLecture.deleteLecture(Id);
+            }else
+            {
+                return -1;
+            }
+        }
+
     }
 }

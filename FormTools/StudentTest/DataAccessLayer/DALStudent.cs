@@ -30,5 +30,54 @@ namespace DataAccessLayer
             }
             return result;
         }
+
+        public static List<ELStudent> getStudentList()
+        {
+            if (Connection.connection.State != System.Data.ConnectionState.Open)
+            {
+                Connection.connection.Open();
+            }
+
+            SqlCommand commandGetStudent = new SqlCommand("select * from TblStudent",Connection.connection);
+            SqlDataReader reader = commandGetStudent.ExecuteReader();
+            List<ELStudent> studentList = new List<ELStudent>();
+            while(reader.Read())
+            {
+                ELStudent student = new ELStudent();
+                student.StudentId = int.Parse(reader[0].ToString());
+                student.StudentName = reader[1].ToString();
+                student.StudentSurname = reader[2].ToString();
+                student.StudentNumber = reader[3].ToString();
+                student.StudentDepartment =reader[4].ToString();
+                studentList.Add(student);
+            }
+
+            reader.Close();
+
+            if(Connection.connection.State==System.Data.ConnectionState.Open)
+            {
+                Connection.connection.Close();
+            }
+
+            return studentList;
+        }
+
+        public static int deleteStudent(int Id)
+        {
+            if (Connection.connection.State != System.Data.ConnectionState.Open)
+            {
+                Connection.connection.Open();
+            }
+
+            SqlCommand commandDelete = new SqlCommand("delete from TblStudent where studentId=@p1", Connection.connection);
+            commandDelete.Parameters.AddWithValue("@p1", Id);
+            int result = commandDelete.ExecuteNonQuery();
+            if (Connection.connection.State == System.Data.ConnectionState.Open)
+            {
+                Connection.connection.Close();
+            }
+
+            return result;
+        }
     }
 }
