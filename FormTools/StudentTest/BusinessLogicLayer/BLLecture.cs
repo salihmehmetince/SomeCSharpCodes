@@ -40,5 +40,17 @@ namespace BusinessLogicLayer
             }
         }
 
+        public static int updateLecture(ELLecture lecture)
+        {
+            if(lecture.LectureName!=null &&lecture.LectureName.Length>=2&&lecture.LectureName.Length<=30 &&lecture.LectureId>=1)
+            {
+                return DALLecture.updateLecture(lecture);
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
     }
 }

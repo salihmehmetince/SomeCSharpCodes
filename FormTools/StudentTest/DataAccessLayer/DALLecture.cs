@@ -72,5 +72,23 @@ namespace DataAccessLayer
 
             return result;
         }
+
+        public static int updateLecture(ELLecture lecture)
+        {
+            if (Connection.connection.State != System.Data.ConnectionState.Open)
+            {
+                Connection.connection.Open();
+            }
+            SqlCommand commandUpdate = new SqlCommand("update TblLecture set lectureName=@p1 where lectureId=@p2", Connection.connection);
+            commandUpdate.Parameters.AddWithValue("@p1",lecture.LectureName);
+            commandUpdate.Parameters.AddWithValue("@p2",lecture.LectureId);
+            int result = commandUpdate.ExecuteNonQuery();
+            if (Connection.connection.State == System.Data.ConnectionState.Open)
+            {
+                Connection.connection.Close();
+            }
+
+            return result;
+        }
     }
 }

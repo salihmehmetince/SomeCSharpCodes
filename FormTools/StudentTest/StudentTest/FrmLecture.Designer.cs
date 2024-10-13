@@ -125,6 +125,7 @@
             this.BtnUpdate.TabIndex = 7;
             this.BtnUpdate.Text = "Update";
             this.BtnUpdate.UseVisualStyleBackColor = false;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // BtnList
             // 

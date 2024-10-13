@@ -79,5 +79,29 @@ namespace DataAccessLayer
 
             return result;
         }
+
+        public static int updateStudent(ELStudent student)
+        {
+            if (Connection.connection.State != System.Data.ConnectionState.Open)
+            {
+                Connection.connection.Open();
+            }
+            SqlCommand commandUpdate = new SqlCommand("update TblStudent set studentName=@p1,studentSurname=@p2,studentNumber=@p3,studentDepartment=@p4 where studentId=@p5", Connection.connection);
+            commandUpdate.Parameters.AddWithValue("@p1", student.StudentName);
+            commandUpdate.Parameters.AddWithValue("@p2", student.StudentSurname);
+            commandUpdate.Parameters.AddWithValue("@p3", student.StudentNumber);
+            commandUpdate.Parameters.AddWithValue("@p4", student.StudentDepartment);
+            commandUpdate.Parameters.AddWithValue("@p5", student.StudentId);
+
+            int result= commandUpdate.ExecuteNonQuery();
+
+            if (Connection.connection.State == System.Data.ConnectionState.Open)
+            {
+                Connection.connection.Close();
+            }
+
+            return result;
+
+        }
     }
 }

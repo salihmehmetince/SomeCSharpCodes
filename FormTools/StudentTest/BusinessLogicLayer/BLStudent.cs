@@ -52,5 +52,34 @@ namespace BusinessLogicLayer
                 return -1;
             }
         }
+
+        public static int updateStudent(ELStudent student)
+        {
+            if (student.StudentId<1)
+            {
+                return -1;
+            }
+            if (student.StudentName == "" && student.StudentName.Length < 2 && student.StudentName.Length > 30)
+            {
+                return -1;
+            }
+
+            if (student.StudentSurname == "" && student.StudentSurname.Length < 2 && student.StudentSurname.Length > 30)
+            {
+                return -1;
+            }
+
+            if (student.StudentNumber == "" && student.StudentName.Length != 5)
+            {
+                return -1;
+            }
+
+            if (student.StudentDepartment == "" && student.StudentDepartment.Length < 2 && student.StudentDepartment.Length > 30)
+            {
+                return -1;
+            }
+            int result = DALStudent.updateStudent(student);
+            return result;
+        }
     }
 }

@@ -114,6 +114,7 @@
             this.BtnStudentUpdate.TabIndex = 33;
             this.BtnStudentUpdate.Text = "Update";
             this.BtnStudentUpdate.UseVisualStyleBackColor = false;
+            this.BtnStudentUpdate.Click += new System.EventHandler(this.BtnStudentUpdate_Click);
             // 
             // BtnList
             // 

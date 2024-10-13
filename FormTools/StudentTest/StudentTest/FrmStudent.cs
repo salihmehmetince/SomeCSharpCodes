@@ -75,6 +75,64 @@ namespace StudentTest
             }
         }
 
+        private void update()
+        {
+            string Id = TxtStudentId.Text;
+            if (Id == "")
+            {
+                MessageBox.Show("Id cannot be empty", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int iId = int.Parse(Id);
+
+            string studentName = TxtStudentName.Text;
+            string studentSurname = TxtStudentSurname.Text;
+            string studentNumber = MTBStudentNumber.Text;
+            string studentDepartment = TxtStudentDepartment.Text;
+
+            if(studentName=="")
+            {
+                MessageBox.Show("Name cannot be empty", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (studentSurname == "")
+            {
+                MessageBox.Show("Surname cannot be empty", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (studentNumber == "")
+            {
+                MessageBox.Show("Student number cannot be empty", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (studentDepartment == "")
+            {
+                MessageBox.Show("Student department cannot be empty", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            ELStudent student = new ELStudent();
+            student.StudentId = iId;
+            student.StudentName = studentName;
+            student.StudentSurname = studentSurname;
+            student.StudentNumber = studentNumber;
+            student.StudentDepartment = studentDepartment;
+            int result = BLStudent.updateStudent(student);
+            if(result==-1)
+            {
+                MessageBox.Show("An error occured", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Successfully updated", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                list();
+            }
+
+        }
+
         private void BtnStudentInsert_Click(object sender, EventArgs e)
         {
             insertStudent();
@@ -93,6 +151,11 @@ namespace StudentTest
         private void BtnStudentDelete_Click(object sender, EventArgs e)
         {
             delete();
+        }
+
+        private void BtnStudentUpdate_Click(object sender, EventArgs e)
+        {
+            update();
         }
     }
 }

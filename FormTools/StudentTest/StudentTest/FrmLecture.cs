@@ -72,6 +72,41 @@ namespace StudentTest
             list();
         }
 
+        private void update()
+        {
+            string lectureId = TxtLectureId.Text;
+            string lectureName = TxtLectureName.Text;
+
+            if(lectureId=="")
+            {
+                MessageBox.Show("Id cannot be empty", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (lectureName == "")
+            {
+                MessageBox.Show("Lecture name cannot be empty", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            byte bLectureId=byte.Parse(lectureId);
+            ELLecture lecture = new ELLecture();
+            lecture.LectureId = bLectureId;
+            lecture.LectureName=lectureName;
+            int result=BLLecture.updateLecture(lecture);
+
+            if(result==-1)
+            {
+                MessageBox.Show("An error occurred", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+            else
+            {
+                MessageBox.Show("Successfully updated", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                list();
+            }
+        }
+
         private void colorDatagridview()
         {
             dataGridView1.DefaultCellStyle.BackColor = Color.Green;
@@ -96,6 +131,11 @@ namespace StudentTest
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             delete();
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            update();
         }
     }
 }
