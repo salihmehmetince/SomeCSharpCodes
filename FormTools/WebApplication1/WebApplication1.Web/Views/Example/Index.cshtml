@@ -4,4 +4,29 @@
 }
 
 <h1>Example Index page</h1>
+<h2>@ViewBag.name</h2>
+<h3>@ViewBag.grades</h3>
+<h2>@ViewBag.number</h2>
+@{
+    string name = ViewBag.name;
+    <h1>ViewBag.grades</h1>
+}
+
+<h1>@name</h1>
+<hr />
+<h1>@ViewData["name2"]</h1>
+@{
+    foreach (int item in ViewData["numbers2"] as List<int>)
+    {
+        <p>@item</p>
+    }
+}
+
+@{
+    foreach(int grade in ViewBag.grades as List<int>)
+    {
+        <p>@grade</p>
+    }
+}
+<h1>@ViewData["name2"]</h1>
 
