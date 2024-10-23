@@ -2,7 +2,7 @@
 
 namespace WebApplication1.Web.Controllers
 {
-    public class Product
+    public class Product2
     {
         private int id;
         private string type;
@@ -42,10 +42,10 @@ namespace WebApplication1.Web.Controllers
             ViewData["numbers2"]=new List<int>(new int[] { 433,4343,434});
             ViewData["Note2"] = "Warninnnnnnnnngg:)";
             TempData["TempName"] = "Temp name";*/
-            Product[] products = new Product[3];
-            products[0] = new Product();
-            products[1] = new Product();
-            products[2] = new Product();
+            Product2[] products = new Product2[3];
+            products[0] = new Product2();
+            products[1] = new Product2();
+            products[2] = new Product2();
             products[0].Id = 1;
             products[0].Type = "Small house appliences";
             products[0].Name = "Mixer";
@@ -68,8 +68,8 @@ namespace WebApplication1.Web.Controllers
 
         public IActionResult Index2()
         {
-            string name = TempData["TempName"].ToString();
-            ViewBag.tempName=name;
+            //string name = TempData["TempName"].ToString();
+            //ViewBag.tempName=name;
             return View();
         }
         public IActionResult Index3(int id)
