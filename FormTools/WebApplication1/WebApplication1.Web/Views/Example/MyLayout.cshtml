@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/MyCSS.css" asp-append-version="true" />
+    @await RenderSectionAsync("CSS",required:false)
+</head>
+<body>
+    <header style="color:blueviolet;">
+        <h1 >Header part</h1>
+        @await RenderSectionAsync("header",required:false)
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer style="background-color:burlywood;font-family:'Times New Roman', Times, serif;">
+        <h3>Footer part</h3>
+        @await RenderSectionAsync("footer",required:false)
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @await RenderSectionAsync("Scripts",required:false)
+</body>
+</html>

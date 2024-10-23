@@ -1,9 +1,10 @@
 ﻿@using WebApplication1.Web.Controllers
-@*
+
 @{
     ViewData["Title"] = "Index";
+    Layout = "MyLayout";
 }
-
+@*
 <h1>Example Index page</h1>
 <h2>@ViewBag.name</h2>
 <h3>@ViewBag.grades</h3>
@@ -31,7 +32,8 @@
 }
 <h1>@ViewData["name2"]</h1>
 <hr />*@
-
+<partial name="_header"/>
+<header>new header part</header>
 
 @model Product[]
 @foreach (var item in Model)
@@ -40,7 +42,32 @@
         <p>Type: @item.Type</p>
         <p>Name: @item.Name</p>
 }
+<footer>new footer part</footer>
 
+@section header{
+    <p>Merhaba header</p>
+}
+
+@section footer{
+    <p>Hello footer</p>
+}
+
+@section Scripts{
+    <script>
+        alert("Hello asp.net");
+        $(document).ready(function(){alert("What's up");console.log("hello")})
+    </script>
+}
+
+@section CSS{
+    <style>
+        h1{
+            background-color:yellow;
+            color:blue;
+        }
+
+    </style>
+}
 
 
 
