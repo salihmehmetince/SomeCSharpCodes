@@ -10,20 +10,28 @@ namespace WebApplication1.Web.Controllers
         public ProductController()
         {
             _productRepository = new ProductRepository();
-
-            if(!_productRepository.getProducts.Any())
-            {
-                _productRepository.add(new() { Id=1,Name="asd",Type="dsa",Price=1000});
-                _productRepository.add(new() { Id=2,Name="add",Type="dsa",Price=4000});
-                _productRepository.add(new() { Id=3,Name="afd",Type="ssa",Price=2000});
-                _productRepository.add(new() { Id=4,Name="agd",Type="ssa",Price=4000});
-            }
         }
 
         public IActionResult Index()
         {
             List<Product> products = _productRepository.getProducts as List<Product>;
             return View(products);
+        }
+
+        public IActionResult delete(int id)
+        {
+            _productRepository.delete(id);
+            return RedirectToAction("Index","Product",id);
+        }
+
+        public IActionResult add()
+        {
+            return View();
+        }
+
+        public IActionResult update(int id)
+        {
+            return View();
         }
     }
 }

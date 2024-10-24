@@ -6,7 +6,7 @@
 
 @model List<Product>
 
-
+<a asp-controller="Product" asp-action="add">Add product</a>
 <table class="table">
     <thead>
         <tr>
@@ -22,6 +22,9 @@
             </th>
             <th>
                 Price
+            </th>
+            <th>
+                Transaction
             </th>
         </tr>
     </thead>
@@ -41,6 +44,12 @@
                 </td>
                 <td>
                     @item.Price
+                </td>
+                <td>
+                    <a asp-controller="Product" asp-action="delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+                <td>
+                    <a asp-controller="Product" asp-action="update" asp-route-id="@item.Id">Update</a>
                 </td>
             </tr>
         }

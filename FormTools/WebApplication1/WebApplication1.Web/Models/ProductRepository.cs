@@ -1,9 +1,16 @@
-﻿namespace WebApplication1.Web.Models
+﻿using WebApplication1.Web.Models;
+
+namespace WebApplication1.Web.Models
 {
     public class ProductRepository
     {
 
-        private static List<Product> _products=new List<Product>();
+        private static List<Product> _products=new List<Product>()
+        {
+             new() { Id=1,Name="asd",Type="dsa",Price=1000},
+             new () { Id=2,Name="add",Type="dsa",Price=4000},
+             new() { Id = 3, Name = "agd", Type = "ssa", Price = 4000 }
+        };
 
         public List<Product> getProducts => _products;
 
