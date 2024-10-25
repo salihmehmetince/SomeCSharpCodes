@@ -1,34 +1,28 @@
-﻿namespace WebApplication1.Web.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WebApplication1.Web.Models
 {
     public class Product
     {
-        private int id;
-        private string name;
-        private string type;
-        private decimal price;
+        [Column("id")]
+        public int Id { get; set; }
 
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        [Column("pName")]
+        public string Name { get; set; }
 
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        [Column("pType")]
+        public string Type { get; set; }
 
-        public string Type
-        {
-            get { return type; }
-            set { type = value; }
-        }
+        [Column("pPrice")]
+        public decimal Price { get; set; }
 
-        public decimal Price
-        {
-            get { return price; }
-            set { price = value; }
-        }
+        [Column("color")]
+        public string? Color { get; set; }
+
+        [Column("height")]
+        public int? Height { get; set; }
+
+        [Column("width")]
+        public int? Width { get; set; }
     }
 }

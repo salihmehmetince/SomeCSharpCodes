@@ -24,6 +24,15 @@
                 Price
             </th>
             <th>
+                Color
+            </th>
+            <th>
+                Height
+            </th>
+            <th>
+                Width
+            </th>
+            <th>
                 Transaction
             </th>
         </tr>
@@ -33,7 +42,7 @@
         {
             <tr>
                 <td>
-                    @item.Id
+                    @item.Id;
                 </td>
 
                 <td>
@@ -44,6 +53,15 @@
                 </td>
                 <td>
                     @item.Price
+                </td>
+                <td>
+                    @item.Color
+                </td>
+                <td>
+                    @item.Height
+                </td>
+                <td>
+                    @item.Width
                 </td>
                 <td>
                     <a asp-controller="Product" asp-action="delete" asp-route-id="@item.Id">Delete</a>
