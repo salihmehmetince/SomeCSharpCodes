@@ -49,6 +49,28 @@ namespace WebApplication1.Web.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult addProduct()
+        {
+            var pName = HttpContext.Request.Form["pName"].ToString();
+            var pType = HttpContext.Request.Form["pType"].ToString();
+            var pPrice = decimal.Parse(HttpContext.Request.Form["pPrice"].ToString());
+            var pColor = HttpContext.Request.Form["pColor"].ToString();
+            var pHeight = int.Parse(HttpContext.Request.Form["pHeight"].ToString());
+            var pWidth = int.Parse(HttpContext.Request.Form["pWidth"].ToString());
+
+            Product product = new Product();
+            product.Name = pName;
+            product.Type = pType;
+            product.Price = pPrice;
+            product.Color = pColor;
+            product.Height = pHeight;
+            product.Width = pWidth;
+            appDBContext.Products.Add(product);
+            appDBContext.SaveChanges();
+            return RedirectToAction("Index", "Product");
+        }
+
         public IActionResult update(int id)
         {
             return View();

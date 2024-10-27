@@ -24,5 +24,17 @@ namespace WebApplication1.Web.Models
 
         [Column("width")]
         public int? Width { get; set; }
+
+        [Column("stock")]
+        public int? stock { get; set; }
+
+        [Column("piece")]
+        public int? piece { get; set; }
+
+        [Column("description")]
+        public string? Description { get; set; }
+
+
+
     }
 }
