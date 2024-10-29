@@ -3,6 +3,12 @@
 }
 
 <h1>Index</h1>
+@if(TempData["status"]!=null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["status"]
+    </div>
+}
 
 @model List<Product>
 

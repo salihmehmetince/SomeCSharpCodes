@@ -5,3 +5,28 @@
 
 <h1>Update</h1>
 
+@model Product
+<form asp-controller="Product" asp-action="updateProduct" asp-route-Id=@Model.Id method="post">
+    <label>Name:</label>
+    <input type="text" asp-for="Name" />
+    <br />
+    <label>Type:</label>
+    <input type="text" asp-for="Type" />
+    <br />
+    <label>Price:</label>
+    <input type="text" asp-for="Price" />
+    <br />
+    <label>Color:</label>
+    <input type="text" asp-for="Color" />
+    <br />
+    <label>Height:</label>
+    <input type="text" asp-for="Height" />
+    <br />
+    <label>Width:</label>
+    <input type="text" asp-for="Width" />
+    <br />
+    <button type="submit">update product</button>
+</form>
+
+
+
