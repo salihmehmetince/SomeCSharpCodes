@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using WebApplication1.Web.Controllers.Helpers;
 using WebApplication1.Web.Models;
 
 namespace WebApplication1.Web.Controllers
@@ -8,13 +9,17 @@ namespace WebApplication1.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private Helper helper;
+        public HomeController(ILogger<HomeController> logger,Helper helper)
         {
             _logger = logger;
+            this.helper = helper;
         }
 
         public IActionResult Index()
         {
+            var text = "dsfjsjdfjsd";
+            var upper=helper.Upper(text);
             return View();
         }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
+using WebApplication1.Web.Controllers.Helpers;
 using WebApplication1.Web.Models;
 
 namespace WebApplication1.Web.Controllers
@@ -10,13 +11,14 @@ namespace WebApplication1.Web.Controllers
 
         private AppDBContext appDBContext;
 
-        public ProductController(AppDBContext appDBContext)
+        private IHelper helper;
+        public ProductController(AppDBContext appDBContext,IHelper helper)//construction injection via DI container
         {
             _productRepository = new ProductRepository();
             //Dependecy Injection design paterni
             //Burada DI container appDBContext parametresi ile sağlandı.
             this.appDBContext = appDBContext;
-
+            this.helper = helper;
             if(!appDBContext.Products.Any())
             {
                 appDBContext.Products.Add(new() { Name="Product1",Type="Type2",Price=1000,Color="Blue",Height=100,Width=200});
@@ -26,9 +28,20 @@ namespace WebApplication1.Web.Controllers
             }
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromServices] IHelper helper2)//method injection via DI Container
         {
             List<Product> products = appDBContext.Products.ToList();
+            var text = "dsbdjfjsdj";
+            var upperTex=helper.Upper(text);
+            var status = "";
+            if(this.helper.Equals(helper2))
+            {
+                status = "True";
+            }
+            else
+            {
+                status = "False";
+            }
             return View(products);
         }
 
