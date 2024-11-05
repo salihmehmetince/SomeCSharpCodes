@@ -59,6 +59,8 @@ namespace WebApplication1.Web.Controllers
 
         public IActionResult add()
         {
+            var expirationDates = new Dictionary<string, int>() { {"1 ay",1 }, { "3 ay", 3 }, { "6 ay", 6 }, { "12 ay", 12 } };
+            ViewData["ExpirationDate"] = expirationDates;
             return View();
         }
 

@@ -34,6 +34,11 @@ namespace WebApplication1.Web.Models
         [Column("description")]
         public string? Description { get; set; }
 
+        [Column("isShow")]
+        public bool IsShow { get; set; }
+
+        [Column("Expiration")]
+        public int Expiration { get; set; }
 
 
     }

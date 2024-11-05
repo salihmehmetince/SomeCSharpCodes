@@ -6,24 +6,61 @@
 <h1>Add</h1>
 @model Product
 <form asp-controller="Product" asp-action="addProduct" method="post">
-    <label>Name:</label>
-    <input type="text" asp-for="Name" />
-    <br />
-    <label>Type:</label>
-    <input type="text" asp-for="Type"/>
-    <br />
-    <label>Price:</label>
-    <input type="text" asp-for="Price"/>
-    <br />
-    <label>Color:</label>
-    <input type="text" asp-for="Color"/>
-    <br />
-    <label>Height:</label>
-    <input type="text" asp-for="Height"/>
-    <br />
-    <label>Width:</label>
-    <input type="text" asp-for="Width"/>
-    <br />
-    <button type="submit">Add product</button>
+
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name :</label>
+        <input class="form-control" asp-for="Name">
+    </div>
+
+    <div class="mb-3">
+        <label for="Type" class="form-label">Type :</label>
+        <input class="form-control" asp-for="Type">
+    </div>
+
+    <div class="mb-3">
+        <label for="Price" class="form-label">Price :</label>
+        <input class="form-control" asp-for="Price">
+    </div>
+
+    <div class="mb-3">
+        <label for="Color" class="form-label">Color :</label>
+        <input class="form-control" asp-for="Color">
+    </div>
+
+    <div class="mb-3">
+        <label for="Height" class="form-label">Height :</label>
+        <input class="form-control" asp-for="Height">
+    </div>
+
+    <div class="mb-3">
+        <label for="Width" class="form-label">Width :</label>
+        <input class="form-control" asp-for="Width">
+    </div>
+
+
+    <div class="form-check">
+      <input class="form-check-input" asp-for="IsShow">
+      <label class="form-check-label">
+        Shall we show?
+      </label>
+    </div>
+
+    <div class="mb-3 mt-3">
+        <span>How many months will stay?</span>
+        @foreach (var item in ViewData["ExpirationDate"] as Dictionary<string, int>)
+        {
+                  <div class="form- ch eck">
+                          <input class="form-check-input" type="radio" asp-for="Expiration" value="@item.Value">
+                      <label class="form-ch eck- label">
+                    @item.Key
+                      </label>
+                   </div>
+
+        }
+    </div>
+    
+
+    
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
 
