@@ -61,6 +61,16 @@ namespace WebApplication1.Web.Controllers
         {
             var expirationDates = new Dictionary<string, int>() { {"1 ay",1 }, { "3 ay", 3 }, { "6 ay", 6 }, { "12 ay", 12 } };
             ViewData["ExpirationDate"] = expirationDates;
+            ViewData["Color"] = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(
+                new List<WebApplication1.Web.Models.Color>()
+                {
+                    new(){colorName="Blue",colorValue="Blue"},
+                    new(){colorName="Yellow",colorValue="Yellow"},
+                    new(){colorName="Red",colorValue="Red"},
+                },
+                "colorValue",
+                "colorName"
+                );
             return View();
         }
 

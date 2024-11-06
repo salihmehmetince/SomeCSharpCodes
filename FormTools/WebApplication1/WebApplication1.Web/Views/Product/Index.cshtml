@@ -39,6 +39,15 @@
                 Width
             </th>
             <th>
+                Show
+            </th>
+            <th>
+                Expiration
+            </th>
+            <th>
+                Descrption
+            </th>
+            <th>
                 Transaction
             </th>
         </tr>
@@ -68,6 +77,21 @@
                 </td>
                 <td>
                     @item.Width
+                </td>
+                <td>
+                    @(item.IsShow? "Yes":"No")
+                </td>
+                <td>
+                    @item.Expiration
+                </td>
+                <td>
+                    @if (item.Description.Length<20)
+                    {
+                        @item.Description;
+                    }else
+                    {
+                        @item.Description.Substring(0, 20);
+                    }
                 </td>
                 <td>
                     <a asp-controller="Product" asp-action="delete" asp-route-id="@item.Id">Delete</a>
