@@ -7,24 +7,75 @@
 
 @model Product
 <form asp-controller="Product" asp-action="updateProduct" asp-route-Id=@Model.Id method="post">
-    <label>Name:</label>
-    <input type="text" asp-for="Name" />
-    <br />
-    <label>Type:</label>
-    <input type="text" asp-for="Type" />
-    <br />
-    <label>Price:</label>
-    <input type="text" asp-for="Price" />
-    <br />
-    <label>Color:</label>
-    <input type="text" asp-for="Color" />
-    <br />
-    <label>Height:</label>
-    <input type="text" asp-for="Height" />
-    <br />
-    <label>Width:</label>
-    <input type="text" asp-for="Width" />
-    <br />
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name :</label>
+        <input class="form-control" asp-for="Name">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Type" class="form-label">Type :</label>
+        <input class="form-control" asp-for="Type">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label">Price :</label>
+        <input class="form-control" asp-for="Price">
+    </div>
+
+    @{
+        var colorKist = ViewData["Color"] as SelectList;
+        var firstColor = colorKist?.FirstOrDefault();
+    }
+    <div class="mb-3">
+        <select class="form-select" asp-for="Color" asp-items="@(ViewData["Color"] as SelectList)">
+            <option value="@firstColor.Value">Choose A Color</option>
+        </select>
+
+        @*        <label asp-for="Color" class="form-label">Color :</label>
+        <input class="form-control" asp-for="Color">*@
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Height" class="form-label">Height :</label>
+        <input class="form-control" asp-for="Height">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Width" class="form-label">Width :</label>
+        <input class="form-control" asp-for="Width">
+    </div>
+
+
+    <div class="form-check">
+        <input class="form-check-input" asp-for="IsShow">
+        <label asp-for="IsShow" class="form-check-label">
+            Shall we show?
+        </label>
+    </div>
+
+    <div class="mb-3 mt-3">
+        <span>How many months will stay?</span>
+        @foreach (var item in ViewData["ExpirationDate"] as Dictionary<string, int>)
+        {
+            <div class="form- ch eck">
+                <input checked=@(item.Value==(int)ViewData["ExpirationDateValue"]? true:false) class="form-check-input" type="radio" name="Expiration" value="@item.Value" id="expiration_@(item.Value)">
+                <label class="form-check-label" for="expiration_@(item.Value)">
+                    @item.Key
+                </label>
+            </div>
+
+        }
+    </div>
+
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Descriptipn please..." asp-for="Description"></textarea>
+        <label asp-for="Description">Description</label>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="RemoveDate" class="form-label">Remove Date :</label>
+        <input class="form-control" asp-for="RemoveDate">
+    </div>
     <button type="submit">update product</button>
 </form>
 

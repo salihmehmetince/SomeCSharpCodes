@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using WebApplication1.Web.Controllers.Helpers;
 using WebApplication1.Web.Models;
 
@@ -13,6 +14,8 @@ builder.Services.AddDbContext<AppDBContext>(options => { options.UseSqlServer(bu
 builder.Services.AddTransient<IHelper, Helper>();
 builder.Services.AddScoped<Helper>();//bu kullaným dependicy inversion prensibini uygulamadýðý için iyi deðildir.
 //builder.Services.AddScoped<Helper>(sP=>new Helper());
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

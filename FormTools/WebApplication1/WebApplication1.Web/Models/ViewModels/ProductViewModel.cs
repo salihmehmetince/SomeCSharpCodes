@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebApplication1.Web.Models
+namespace WebApplication1.Web.Models.ViewModels
 {
-    public class Product
+    public class ProductViewModel
     {
         [Column("id")]
         public int Id { get; set; }
@@ -40,8 +40,7 @@ namespace WebApplication1.Web.Models
         [Column("Expiration")]
         public int Expiration { get; set; }
 
-        [Column ("removeDate")]
+        [Column("removeDate")]
         public DateTime? RemoveDate { get; set; }
-
     }
 }

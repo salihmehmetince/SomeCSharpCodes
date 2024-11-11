@@ -2,6 +2,8 @@
 using System.Drawing;
 using WebApplication1.Web.Controllers.Helpers;
 using WebApplication1.Web.Models;
+using AutoMapper;
+using WebApplication1.Web.Models.ViewModels;
 
 namespace WebApplication1.Web.Controllers
 {
@@ -12,13 +14,16 @@ namespace WebApplication1.Web.Controllers
         private AppDBContext appDBContext;
 
         private IHelper helper;
-        public ProductController(AppDBContext appDBContext,IHelper helper)//construction injection via DI container
+
+        private readonly IMapper mapper;
+        public ProductController(AppDBContext appDBContext,IHelper helper,IMapper mapper)//construction injection via DI container
         {
             _productRepository = new ProductRepository();
             //Dependecy Injection design paterni
             //Burada DI container appDBContext parametresi ile sağlandı.
             this.appDBContext = appDBContext;
             this.helper = helper;
+            this.mapper = mapper;
             if(!appDBContext.Products.Any())
             {
                 appDBContext.Products.Add(new() { Name="Product1",Type="Type2",Price=1000,Color="Blue",Height=100,Width=200});
@@ -42,7 +47,8 @@ namespace WebApplication1.Web.Controllers
             {
                 status = "False";
             }
-            return View(products);
+            var productMapperList = mapper.Map<List<ProductViewModel>>(products);
+            return View(productMapperList);
         }
 
         public IActionResult delete(int id)
@@ -107,6 +113,20 @@ namespace WebApplication1.Web.Controllers
         public IActionResult update(int id)
         {
             var product = appDBContext.Products.Find(id);
+            ViewData["ExpirationDateValue"] = product.Expiration;
+            var expirationDates = new Dictionary<string, int>() { { "1 ay", 1 }, { "3 ay", 3 }, { "6 ay", 6 }, { "12 ay", 12 } };
+            ViewData["ExpirationDate"] = expirationDates;
+            ViewData["Color"] = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(
+                new List<WebApplication1.Web.Models.Color>()
+                {
+                    new(){colorName="Blue",colorValue="Blue"},
+                    new(){colorName="Yellow",colorValue="Yellow"},
+                    new(){colorName="Red",colorValue="Red"},
+                },
+                "colorValue",
+                "colorName",
+                product.Color
+                );
             return View(product);
         }
 
