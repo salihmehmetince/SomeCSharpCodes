@@ -81,7 +81,7 @@ namespace WebApplication1.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult addProduct(Product product)//model binding ile veri alma
+        public IActionResult addProduct(ProductViewModel productViewModel)//model binding ile veri alma
         {
             /*var pName = HttpContext.Request.Form["pName"].ToString();
             var pType = HttpContext.Request.Form["pType"].ToString();
@@ -97,10 +97,33 @@ namespace WebApplication1.Web.Controllers
             product.Color = pColor;
             product.Height = pHeight;
             product.Width = pWidth;*/
-            appDBContext.Products.Add(product);
-            appDBContext.SaveChanges();
-            TempData["status"] = "Sucessfully added";
-            return RedirectToAction("Index", "Product");
+            if(ModelState.IsValid)
+            {
+                appDBContext.Products.Add(mapper.Map<Product>(productViewModel));
+                appDBContext.SaveChanges();
+                TempData["status"] = "Sucessfully added";
+                return RedirectToAction("Index", "Product");
+            }
+            else
+            {
+                var expirationDates = new Dictionary<string, int>() { { "1 ay", 1 }, { "3 ay", 3 }, { "6 ay", 6 }, { "12 ay", 12 } };
+                ViewData["ExpirationDate"] = expirationDates;
+                ViewData["Color"] = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(
+                    new List<WebApplication1.Web.Models.Color>()
+                    {
+                    new(){colorName="Blue",colorValue="Blue"},
+                    new(){colorName="Yellow",colorValue="Yellow"},
+                    new(){colorName="Red",colorValue="Red"},
+                    },
+                    "colorValue",
+                    "colorName"
+                    );
+                if(!string.IsNullOrEmpty(productViewModel.Name) && productViewModel.Name.StartsWith("A"))
+                {
+                    ModelState.AddModelError(String.Empty, "Name cannot start with A");
+                }
+                return View("add", productViewModel);
+            }
         }
 
 

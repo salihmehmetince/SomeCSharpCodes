@@ -4,22 +4,29 @@
 }
 
 <h1>Add</h1>
-@model Product
+@model ProductViewModel
+
+<div asp-validation-summary="ModelOnly">
+
+</div>
 <form asp-controller="Product" asp-action="addProduct" method="post">
 
     <div class="mb-3">
         <label asp-for="Name" class="form-label">Name :</label>
         <input class="form-control" asp-for="Name">
+        <span class="text-danger" asp-validation-for="Name"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Type" class="form-label">Type :</label>
         <input class="form-control" asp-for="Type">
+        <span class="text-danger" asp-validation-for="Type"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Price" class="form-label">Price :</label>
         <input class="form-control" asp-for="Price">
+        <span class="text-danger" asp-validation-for="Price"></span>
     </div>
 
     @{
@@ -30,6 +37,7 @@
         <select class="form-select" asp-for="Color" asp-items="@(ViewData["Color"] as SelectList)">
             <option value="@firstColor.Value">Choose A Color</option>
         </select>
+        <span class="text-danger" asp-validation-for="Color"></span>
 
 @*        <label asp-for="Color" class="form-label">Color :</label>
         <input class="form-control" asp-for="Color">*@
@@ -38,11 +46,13 @@
     <div class="mb-3">
         <label asp-for="Height" class="form-label">Height :</label>
         <input class="form-control" asp-for="Height">
+        <span class="text-danger" asp-validation-for="Height"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Width" class="form-label">Width :</label>
         <input class="form-control" asp-for="Width">
+        <span class="text-danger" asp-validation-for="Width"></span>
     </div>
 
 
@@ -65,16 +75,19 @@
                    </div>
 
         }
+        <span class="text-danger" asp-validation-for="Expiration"></span>
     </div>
 
     <div class="form-floating">
         <textarea class="form-control" placeholder="Descriptipn please..." asp-for="Description"></textarea>
         <label asp-for="Description">Description</label>
+        <span class="text-danger" asp-validation-for="Description"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="RemoveDate" class="form-label">Remove Date :</label>
         <input class="form-control" asp-for="RemoveDate">
+        <span class="text-danger" asp-validation-for="RemoveDate"></span>
     </div>
 
     <button type="submit" class="btn btn-primary mt-5">Save</button>
