@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using WebApplication1.Web.Controllers.Helpers;
 using WebApplication1.Web.Models;
+using WebApplication1.Web.Models.ViewModels;
 
 namespace WebApplication1.Web.Controllers
 {
@@ -10,16 +11,25 @@ namespace WebApplication1.Web.Controllers
         private readonly ILogger<HomeController> _logger;
 
         private Helper helper;
-        public HomeController(ILogger<HomeController> logger,Helper helper)
+
+        private readonly AppDBContext appDBContext;
+        public HomeController(ILogger<HomeController> logger,Helper helper, AppDBContext appDBContext)
         {
             _logger = logger;
             this.helper = helper;
+            this.appDBContext = appDBContext;
         }
 
         public IActionResult Index()
         {
             var text = "dsfjsjdfjsd";
             var upper=helper.Upper(text);
+
+            var products=appDBContext.Products.OrderByDescending(p=>p.Id).Select(x=>new ProductPartialViewModel() { Id=x.Id,Name=x.Name,Price=x.Price,Stock=(int)x.stock}).ToList();
+            ViewData["ProductListViewModel"] = new ProductListViewModel()
+            {
+                products = products
+            };
             return View();
         }
 

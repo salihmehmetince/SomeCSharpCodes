@@ -133,6 +133,21 @@ namespace WebApplication1.Web.Controllers
             return View();
         }
 
+        [AcceptVerbs("GET","POST")]
+        public IActionResult checkProductName(String name)
+        {
+            bool isSame=appDBContext.Products.Any(x=>x.Name==name);
+            if(isSame)
+            {
+                return Json("This name is taken");
+            }
+            else
+            {
+                return Json(true);
+            }
+        }
+
+
         public IActionResult update(int id)
         {
             var product = appDBContext.Products.Find(id);
@@ -150,14 +165,36 @@ namespace WebApplication1.Web.Controllers
                 "colorName",
                 product.Color
                 );
-            return View(product);
+            return View(mapper.Map<ProductViewModel>(product));
+
         }
 
         [HttpPost]
-        public IActionResult updateProduct(Product product,int Id)
+        public IActionResult updateProduct(ProductViewModel productViwModel,int Id)
         {
-            product.Id = Id;
-            appDBContext.Products.Update(product);
+            if(!ModelState.IsValid)
+            {
+                var expirationDates = new Dictionary<string, int>() { { "1 ay", 1 }, { "3 ay", 3 }, { "6 ay", 6 }, { "12 ay", 12 } };
+                ViewData["ExpirationDate"] = expirationDates;
+                ViewData["Color"] = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(
+                    new List<WebApplication1.Web.Models.Color>()
+                    {
+                    new(){colorName="Blue",colorValue="Blue"},
+                    new(){colorName="Yellow",colorValue="Yellow"},
+                    new(){colorName="Red",colorValue="Red"},
+                    },
+                    "colorValue",
+                    "colorName",
+                    productViwModel.Color
+                    );
+                return View();
+            }
+            else
+            {
+
+            }
+            productViwModel.Id = Id;
+            appDBContext.Products.Update(mapper.Map<Product>(productViwModel));
             appDBContext.SaveChanges();
             TempData["Status"] = "Successfully Updated";
             return RedirectToAction("Index");

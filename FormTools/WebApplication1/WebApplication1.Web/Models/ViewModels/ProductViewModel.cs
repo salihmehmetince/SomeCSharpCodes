@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication1.Web.Models.ViewModels
@@ -10,6 +11,7 @@ namespace WebApplication1.Web.Models.ViewModels
 
         [Column("pName")]
         [Required(ErrorMessage = "Name cannot be empty")]
+        [Remote(action:"checkProductName",controller:"Product")]
         [StringLength(100,MinimumLength =2,ErrorMessage ="name length must be between 2-100")]
         public string Name { get; set; }
 
