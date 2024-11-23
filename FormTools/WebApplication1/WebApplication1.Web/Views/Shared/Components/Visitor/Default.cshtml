@@ -1,0 +1,14 @@
+﻿@model VisitorViewModel
+
+<form asp-controller="Home" asp-action="addVisitor" method="post">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input class="form-control" asp-for="Name">
+    </div>
+    
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" asp-for="Comment"></textarea>
+        <label asp-for="Comment">Comments</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Make a Comment</button>
+</form>

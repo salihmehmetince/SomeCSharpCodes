@@ -1,4 +1,5 @@
-﻿@model ProductListViewModel
+﻿@using WebApplication1.Web.Models.ViewModels
+@model ProductListViewModel
 
 <table class="table table-dark table-striped">
 	<thead>
@@ -18,7 +19,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var item in Model.Products)
+		@foreach (var item in Model.products)
 		{
 			<tr>
 				<td>

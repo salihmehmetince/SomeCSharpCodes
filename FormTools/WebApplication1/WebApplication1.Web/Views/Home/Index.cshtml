@@ -6,3 +6,18 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <partial name="~/PartialViews/ProductListPartialView.cshtml" model="@ViewData["ProductListViewModelList"]"></partial>
+        </div>
+        <div class="col-md-4">
+            @*@await Component.InvokeAsync("ProductList",new{type=1})*@
+            <vc:product-list type=1></vc:product-list>
+        </div>
+        <div class="col-md-4">
+            @*@await Component.InvokeAsync("ProductList",new {type=2})*@
+            <vc:product-list type=2></vc:product-list>
+        </div>
+
+    </div>

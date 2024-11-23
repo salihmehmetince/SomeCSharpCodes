@@ -1,0 +1,35 @@
+﻿@model ProductListComponentViewModel
+
+<a asp-controller="Product" asp-action="Index">Details</a>
+<table class="table table-primary table-hover">
+	<thead>
+		<tr>
+			<th>
+				Id
+			</th>
+			<th>
+				Name
+			</th>
+			<th>
+				Description
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.productsList)
+		{
+			<tr>
+				<td>
+					@item.Id
+				</td>
+				<td>
+					@item.Name
+				</td>
+				<td>
+					@item.Description
+				</td>
+			</tr>
+		}
+
+	</tbody>
+</table>

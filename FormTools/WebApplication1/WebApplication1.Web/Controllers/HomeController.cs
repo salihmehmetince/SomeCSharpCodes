@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication1.Web.Controllers.Helpers;
 using WebApplication1.Web.Models;
@@ -13,6 +14,8 @@ namespace WebApplication1.Web.Controllers
         private Helper helper;
 
         private readonly AppDBContext appDBContext;
+
+        private readonly IMapper mapper;
         public HomeController(ILogger<HomeController> logger,Helper helper, AppDBContext appDBContext)
         {
             _logger = logger;
@@ -25,16 +28,21 @@ namespace WebApplication1.Web.Controllers
             var text = "dsfjsjdfjsd";
             var upper=helper.Upper(text);
 
-            var products=appDBContext.Products.OrderByDescending(p=>p.Id).Select(x=>new ProductPartialViewModel() { Id=x.Id,Name=x.Name,Price=x.Price,Stock=(int)x.stock}).ToList();
-            ViewData["ProductListViewModel"] = new ProductListViewModel()
+            var productsList=appDBContext.Products.OrderByDescending(p=>p.Id).Select(x=>new ProductPartialViewModel() { Id=x.Id,Name=x.Name,Price=x.Price,Stock=x.stock??0}).ToList();
+            ViewData["ProductListViewModelList"] = new ProductListViewModel()
             {
-                products = products
+                products = productsList
             };
             return View();
         }
 
         public IActionResult Privacy()
         {
+            var productsList = appDBContext.Products.OrderByDescending(p => p.Id).Select(x => new ProductPartialViewModel() { Id = x.Id, Name = x.Name, Price = x.Price, Stock = x.stock ?? 0 }).ToList();
+            ViewData["ProductListViewModelList"] = new ProductListViewModel()
+            {
+                products = productsList
+            };
             return View();
         }
 
@@ -42,6 +50,30 @@ namespace WebApplication1.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Visitor()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult addVisitor(VisitorViewModel visitorViewModel)
+        {
+            try
+            {
+                var visitor = mapper.Map<Visitor>(visitorViewModel);
+                appDBContext.Visitors.Add(visitor);
+                appDBContext.SaveChanges();
+                TempData["status"] = "Successfully saved";
+                return RedirectToAction(nameof(HomeController.Visitor));
+            }
+            catch(Exception e)
+            {
+                TempData["status"] = "An error occurred"+e.Message;
+                return RedirectToAction(nameof(HomeController.Visitor));
+            }
         }
     }
 }
