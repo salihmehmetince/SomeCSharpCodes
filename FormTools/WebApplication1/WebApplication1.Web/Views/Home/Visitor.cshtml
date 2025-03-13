@@ -1,6 +1,11 @@
-﻿
+﻿@{
+    var product = new Product() { Id=1,Name="test",Price=30,Color="Blue"};
+}
 <div class="row">
     <div class="col-md-9">
         <vc:visitor></vc:visitor>
+    </div>
+    <div class="col-md-3">
+        <product-show product="@product"></product-show>
     </div>
 </div>

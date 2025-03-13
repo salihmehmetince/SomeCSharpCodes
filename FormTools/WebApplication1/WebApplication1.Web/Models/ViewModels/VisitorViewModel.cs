@@ -7,6 +7,6 @@
 
         public string Comment { get; set; }
 
-        public DateTime commenDate { get; set; }    
+        public DateTime commenDate { get; set; }  
     }
 }

@@ -16,11 +16,12 @@ namespace WebApplication1.Web.Controllers
         private readonly AppDBContext appDBContext;
 
         private readonly IMapper mapper;
-        public HomeController(ILogger<HomeController> logger,Helper helper, AppDBContext appDBContext)
+        public HomeController(ILogger<HomeController> logger,Helper helper, AppDBContext appDBContext,IMapper mapper)
         {
             _logger = logger;
             this.helper = helper;
             this.appDBContext = appDBContext;
+            this.mapper = mapper;
         }
 
         public IActionResult Index()
@@ -54,7 +55,7 @@ namespace WebApplication1.Web.Controllers
 
         public IActionResult Visitor()
         {
-
+            
             return View();
         }
 
@@ -63,7 +64,8 @@ namespace WebApplication1.Web.Controllers
         {
             try
             {
-                var visitor = mapper.Map<Visitor>(visitorViewModel);
+                Visitor visitor = mapper.Map<Visitor>(visitorViewModel);
+                visitor.CommentDate = DateTime.Now;
                 appDBContext.Visitors.Add(visitor);
                 appDBContext.SaveChanges();
                 TempData["status"] = "Successfully saved";

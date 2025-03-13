@@ -1,14 +1,36 @@
-﻿@model VisitorViewModel
+﻿@model VisitorContainerViewModel
 
+@if (TempData["status"] != null)
+{
+    <div class="row text-danger">
+        @TempData["status"]
+    </div>
+}
+<h1>Visitors</h1>
+<h2>Visitors' comments</h2>
+<div class="row">
+    @for(int i=0;i<Model.visitorViewModels.Count;i++)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">@Model.visitorViewModels[i].Name</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">@Model.visitorViewModels[i].commenDate</h6>
+                <p class="card-text">@Model.visitorViewModels[i].Comment</p>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+<h2>Add a comment</h2>
 <form asp-controller="Home" asp-action="addVisitor" method="post">
     <div class="mb-3">
-        <label asp-for="Name" class="form-label">Name</label>
-        <input class="form-control" asp-for="Name">
+        <label asp-for="@Model.visitorViewModel.Name" class="form-label">Name</label>
+        <input class="form-control" asp-for="@Model.visitorViewModel.Name">
     </div>
     
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" asp-for="Comment"></textarea>
-        <label asp-for="Comment">Comments</label>
+        <textarea class="form-control" placeholder="Leave a comment here" asp-for="@Model.visitorViewModel.Comment"></textarea>
+        <label asp-for="@Model.visitorViewModel.Comment">Comments</label>
     </div>
     <button type="submit" class="btn btn-primary">Make a Comment</button>
 </form>
