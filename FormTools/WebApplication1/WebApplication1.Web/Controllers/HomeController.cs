@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication1.Web.Controllers.Helpers;
 using WebApplication1.Web.Models;
+using WebApplication1.Web.Filters;
 using WebApplication1.Web.Models.ViewModels;
 
 namespace WebApplication1.Web.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -23,6 +25,8 @@ namespace WebApplication1.Web.Controllers
             this.appDBContext = appDBContext;
             this.mapper = mapper;
         }
+
+        [LogFilter]
 
         public IActionResult Index()
         {
